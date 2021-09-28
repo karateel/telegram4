@@ -4,18 +4,17 @@ const token = '2017685094:AAFFmr2s120pjMNvF7Wii30FaWgu-kzRXLo';
 
 const bot = new TelegramApi(token, {polling: true});
 
+const start = () => {
+    bot.setMyCommands([
+        {command: '/start', description: 'Приветствие'},
+        {command: '/info', description: 'Возможности бота'},
+        {command: '/cats', description: 'Картинка котиков :)'},
+        {command: '/dogs', description: 'Картинка песелей :)'},
+        {command: '/puppies', description: 'Картинка щеночков C:'},
+        {command: '/kittens', description: 'Картинка котят :)'},
+        {command: '/surprise', description: 'Постараюсь удивить тебя'}
+    ])
 
-bot.setMyCommands([
-    {command: '/start', description: 'Приветствие'},
-    {command: '/info', description: 'Возможности бота'},
-    {command: '/cats', description: 'Картинка котиков :)'},
-    {command: '/dogs', description: 'Картинка песелей :)'},
-    {command: '/puppies', description: 'Картинка щеночков C:'},
-    {command: '/kittens', description: 'Картинка котят :)'},
-    {command: '/surprise', description: 'Постараюсь удивить тебя'}
-])
-
-function start (){
     bot.on('message', async msg => {
         const text = msg.text;
         const chatId = msg.chat.id;
@@ -114,7 +113,6 @@ function start (){
                 let i = parseInt((Math.random() * facts.length) + 1)
                 bot.sendMessage(chatId, facts[i])
             }
-
             await random()
         }
     })
